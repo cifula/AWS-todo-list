@@ -32,6 +32,8 @@ class boardEvent {
                 const dragItem = document.querySelector(".dragflag");
                 if(dragItem.parentElement != boardList) {
                     boardList.appendChild(dragItem);
+
+                    console.log(boardList)
                 }
             })
         })
@@ -63,10 +65,21 @@ class boardService {
 
     constructor() {
         if(localStorage.getItem("todoList") == null) {
-            this.todoList = new Array();
+            this.todoList = {};
         } else {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
         }
+    }
+
+    updateLocalStorage() {
+        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        // this.loadtodoList();
+    }
+
+    loadtodoList() {
+        const boardLists = document.querySelectorAll(".board-list");
+
+        boardLists.forEach()
     }
 
     showItemModal(index) {

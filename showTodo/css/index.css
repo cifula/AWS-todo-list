@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-  
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -105,6 +105,7 @@
 }
 
 .board-items {
+    position: relative;
     z-index: 0;
 
     width: 100%;
@@ -119,12 +120,38 @@
     cursor: pointer;
 }
 
+.board-items:hover {
+    transition: background 0.2s;
+    background-color: #f4f5f7;
+}
+
 .dragflag {
     opacity: 0;
 }
 
 .dragflag:active {
     opacity: 1;
+}
+
+.delete-button {
+    display: none;
+}
+
+.board-items:hover .delete-button {
+    display: flex;
+
+    height: 25px;
+
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: inherit;
+}
+
+.board-items:hover .delete-button:hover {
+    background-color: #eaecf0;
 }
 
 .content-header {

@@ -54,7 +54,7 @@ class todoService {
         }
         this.todoList.push(todoObj);
         console.log(todoObj);
-        localStorage.getItem("todoList",this.todoList);
+        localStorage.setItem("todoList",this.todoList);
     }
 // 파란색 지우기 실패
     // test(clickindex) {

@@ -37,6 +37,16 @@ class boardEvent {
         })
     }
 
+    addEventClickItem() {
+        const boardItems = document.querySelectorAll(".board-items");
+
+        boardItems.forEach(boardItem => {
+            boardItem.onclick = () => {
+                console.log("11");
+            } 
+        });
+    }
+
 }
 
 

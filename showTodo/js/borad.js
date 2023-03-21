@@ -8,7 +8,9 @@ class boardEvent {
     }
 
     addEventDragItem() {
-        const boardItems = document.querySelectorAll(".board-items");
+        const $ = (select) => document.querySelectorAll(select);
+        const boardItems = $('.board-items');
+        const boardLists = $('.board-list');
         
         boardItems.forEach(boardItem => {
             boardItem.addEventListener("dragstart", () => {
@@ -20,23 +22,21 @@ class boardEvent {
             })
         })
 
-        const boardLists = document.querySelectorAll(".board-list");
 
         boardLists.forEach(boardList => {
-            boardList.addEventListener("dragover", (e) => {
+            boardList.addEventListener("dragover", e => {
                 e.preventDefault();
-                const dragItem = document.querySelector(".dragflag");
-                boardList.appendChild(dragItem);
             })
 
-            boardList.addEventListener("drop", (e) => {
-                e.preventDefault();
+            boardList.addEventListener("drop", e => {
                 const dragItem = document.querySelector(".dragflag");
-                // boardList.appendChild(dragItem);
+                if(dragItem.parentElement != boardList) {
+                    boardList.appendChild(dragItem);
+                }
             })
         })
-
     }
+
 }
 
 

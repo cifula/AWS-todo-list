@@ -16,6 +16,8 @@ class addItemEvent {
         const addItemPlusButton = document.querySelector(".add-button");
         addItemPlusButton.onclick = () => {
             addItemService.getInstance().closeAddItem();
+            todoService.getInstance().addTodo();
+            
         }
     }    
 

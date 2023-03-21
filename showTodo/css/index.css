@@ -163,6 +163,10 @@
     border-bottom-right-radius: 2px;
 }
 
+.check-current-menu-hidden {
+    display: none;
+}
+
 
 .additem-container {
     left: 0;

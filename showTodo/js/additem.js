@@ -6,12 +6,18 @@ class addItemEvent {
         }
         return this.#instance;
     }
+    addEventAddTodoClick() {
+        const addItemPlusButton = document.querySelectorAll('.menu-items');
+        addItemPlusButton[2].onclick = () => {
+            addItemService.getInstance().openAddItem();
+        }
+    }
     addEventAddClick() {
         const addItemPlusButton = document.querySelector(".add-button");
         addItemPlusButton.onclick = () => {
             addItemService.getInstance().closeAddItem();
         }
-    }  
+    }    
 
     addEventCancelClick() {
         const addItemCancelButton = document.querySelector(".cancel-button");
@@ -19,8 +25,6 @@ class addItemEvent {
             addItemService.getInstance().closeAddItem();
         }
     }
-
-
 }
 
 class addItemService {
@@ -33,7 +37,11 @@ class addItemService {
     }
 
     closeAddItem() {
-        const addItemContainer = document.querySelector(".addItem-container");
+        const addItemContainer = document.querySelector(".additem-container");
         addItemContainer.classList.add("additem-hidden");
+    }
+    openAddItem() {
+        const addItemContainer = document.querySelector(".additem-container");
+        addItemContainer.classList.remove("additem-hidden");
     }
 }

@@ -2,16 +2,16 @@ class todoService {
     static #instance = null;
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new TodoEvent();
+            this.#instance = new todoService();
         }
         return this.#instance;
     }
-    //  실패
-    setDate() {
-        const nowDate = document.getElementsByClassName('write-day');
-        today = new Date().toISOString().slice(0, 10);
-        nowDate.value = today; 
-    }
+    //  기본값 날짜로 해주기 실패
+    // setDate() {
+    //     const nowDate = document.getElementsByClassName('write-day');
+    //     today = new Date().toISOString().slice(0, 10);
+    //     nowDate.value = today; 
+    // }
 
     addTodo() {
         const titleInput = document.getElementsByClassName(".title-input");

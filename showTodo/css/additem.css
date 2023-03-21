@@ -71,7 +71,7 @@
     /* border: 1px solid black; */
 }
 .write-box {
-    padding-left: 70px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -79,12 +79,15 @@
 
 }
 .write-text {
+    text-align: center;
     height: 60%;
     width: 100%;
 }
 .write-day {
+    justify-content: center;
     height: 40%;
     width: 100%;
+    padding: 0;
 }
 .end-box {
     padding-left: 70px;

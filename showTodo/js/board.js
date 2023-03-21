@@ -37,6 +37,15 @@ class boardEvent {
         })
     }
 
+    addEventClickItem() {
+        const boardItems = document.querySelectorAll(".board-items");
+
+        boardItems.forEach((boardItem, index) => {
+            boardItem.onclick = () => {
+                
+            }
+        });
+    }
 }
 
 
@@ -48,5 +57,19 @@ class boardService {
             this.#instance = new boardService();
         }
         return this.#instance;
+    }
+
+    todoList = null;
+
+    constructor() {
+        if(localStorage.getItem("todoList") == null) {
+            this.todoList = new Array();
+        } else {
+            this.todoList = JSON.parse(localStorage.getItem("todoList"));
+        }
+    }
+
+    showItemModal(index) {
+        
     }
 }

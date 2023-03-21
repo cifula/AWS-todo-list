@@ -45,5 +45,6 @@ class addItemService {
     openAddItem() {
         const addItemContainer = document.querySelector(".additem-container");
         addItemContainer.classList.remove("additem-hidden");
+        
     }
 }

@@ -10,6 +10,7 @@ class todoEvent {
         const addItemPlusButton = document.querySelectorAll('.menu-items');
         addItemPlusButton[2].onclick = () => {
             addItemService.getInstance().openAddItem();
+
         }
     }
     
@@ -22,23 +23,16 @@ class todoService {
         }
         return this.#instance;
     }
-
     todolist = null;
-
     constructor() {
         if(localStorage.getItem("todoList") == null) {
             this.todoList = new Array();
-        }else {
+        } else {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
         }
-        
     }
 
-    //  기본값 날짜로 해주기 실패
-    // setDate() {
-    //     const nowDate = document.getElementsByClassName('write-day');
-    //     nowDate.value = today; 
-    // }
+
     // 데이터 넘겨주는거
     addTodo() {
         const titleInput = document.querySelector(".title-input");
@@ -46,6 +40,8 @@ class todoService {
         const nowDate = new Date();
         const endDate = document.querySelector(".end-day");
 
+
+        // 이거 보내기
         const todoObj = {
             writeTodoDate: `${nowDate.getFullYear()}.${nowDate.getMonth() + 1}.${nowDate.getDate()}`,
             endTodoDate: endDate.value,
@@ -53,8 +49,7 @@ class todoService {
             todoContent: contentInput.value
         }
         this.todoList.push(todoObj);
-        console.log(todoObj);
-        localStorage.setItem("todoList",this.todoList);
+        localStorage.setItem("todoList", this.todoList);
     }
 // 파란색 지우기 실패
     // test(clickindex) {

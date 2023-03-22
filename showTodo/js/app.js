@@ -5,5 +5,5 @@ window.onload = () => {
     addItemEvent.getInstance().addEventCancelClick();
     todoEvent.getInstance().addEventBoardClick();
     todoEvent.getInstance().addEventCalendarClick() ;
-    todoService.getInstance().setDate();
+    todoService.getInstance().setaddItem();
 }

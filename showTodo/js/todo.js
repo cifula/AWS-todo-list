@@ -6,16 +6,36 @@ class todoEvent {
         }
         return this.#instance;
     }
+    addEventBoardClick() {
+        const addItemPlusButton = document.querySelectorAll('.menu-items');
+        addItemPlusButton[0].onclick = () => {
+            todoService.getInstance().removeCheckCurrentMenuHidden(0);
+            todoService.getInstance().addCheckCurrentMenuHidden(1);
+        }
+    }
+    addEventCalendarClick() {
+        const addItemPlusButton = document.querySelectorAll('.menu-items');
+        addItemPlusButton[1].onclick = () => {
+            todoService.getInstance().removeCheckCurrentMenuHidden(1);
+            todoService.getInstance().addCheckCurrentMenuHidden(0);
+        }
+    }
     addEventAddTodoClick() {
         const addItemPlusButton = document.querySelectorAll('.menu-items');
         addItemPlusButton[2].onclick = () => {
+            todoService.getInstance().addCheckCurrentMenuHidden(0);
+            todoService.getInstance().addCheckCurrentMenuHidden(1);
+            addItemService.getInstance().setDate();
             addItemService.getInstance().openAddItem();
+
+            
             
 
         }
     }
     
 }
+
 class todoService {
     static #instance = null;
     static getInstance() {
@@ -53,15 +73,27 @@ class todoService {
         localStorage.setItem("todoList",JSON.stringify(todoObj));
 
     }
-// 파란색 지우기 실패
-    // test() {
-    //     const checkmenu = document.querySelectorAll(".check-current-menu");
-    //     for(let i = 0 ;  i < checkmenu.length; i++) {
-    //         if(i == clickindex) {
-    //             checkmenu[i].classList.remove('.check-current-menu-hidden');
-    //         }
-    //     }
-    // }
+    setDate() {
+        const today = document.querySelector(".write-box");
+        const nowDate = new Date();
+        today.innerHTML ='';
+        today.innerHTML += `
+        <h3 class="write-text">작성날짜</h2>
+        <h1 class="write-day">${nowDate.getFullYear()}-${nowDate.getMonth() + 1}-${nowDate.getDate()}<h1>
+        `;
+    }
+
+    removeCheckCurrentMenuHidden(clickindex) {
+        const checkmenu = document.querySelectorAll(".check-current-menu");
+        checkmenu[clickindex].classList.remove('check-current-menu-hidden');
+    }
+    
+    
+    addCheckCurrentMenuHidden(clickindex) {
+        const checkmenu = document.querySelectorAll(".check-current-menu");
+        checkmenu[clickindex].classList.add('check-current-menu-hidden');
+    }
+    
     
 }
    

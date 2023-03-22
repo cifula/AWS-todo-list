@@ -233,3 +233,7 @@
     border-bottom-right-radius: 2px;
 }
 
+.check-current-menu-hidden {
+    display: none;
+}
+

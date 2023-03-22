@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/additem.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -19,8 +20,8 @@
             </header>
             <nav class="menu-nav">
                 <ul class="menu-list">
-                    <a href="" class="menu-items">
-                        <div class="check-current-menu"></div> 
+                    <a href="javascript:void(0)" class="menu-items">
+                        <div class="check-current-menu check-current-menu-hidden"></div> 
                         <div class="menu-label">
                             <i class="fa-lg fa-solid fa-table-list"></i>
                         </div>
@@ -28,8 +29,8 @@
                             Board
                         </div> 
                     </a>
-                    <a href="" class="menu-items">
-                        <div class="check-current-menu"></div>  
+                    <a href="calendar.html" onclick="location.href='calendar.html'" class="menu-items">
+                        <div class="check-current-menu check-current-menu-hidden"></div>  
                         <div class="menu-label">
                             <i class="fa-lg fa-regular fa-calendar"></i>
                         </div>
@@ -38,7 +39,9 @@
                         </div>
                     </a>
                     <a href="javascript:void(0)" class="menu-items">
-                        <div class="check-current-menu"></div>  
+
+                        <div class="check-current-menu check-current-menu-hidden"></div>  
+
                         <div class="menu-label">
                             <i class="fa-lg fa-regular fa-square-plus"></i>
                         </div>
@@ -94,34 +97,34 @@
             </div>
 
         </div>
-    </div>
 
-    <div class="modal-container">
-        <div class="modal-section">
-            <main class="modal-header">
-                <h1 class="modal-header-title">TODO 추가</h1>
-                <input type="text" class="title-input" placeholder="제목을 입력해주세요">
-            </main>
-            <main class="modal-main-content">
-                <input type="text" class="content-input" placeholder="내용을 입력해주세요">
-            </main>
-            <main class="modal-footer">
-                <div class="write-box">
-                    <h3 class="write-text">작성날짜</h2>
-                </div>
-                <div class="end-box">
-                    <h3 class="end-text" >마감날짜</h2>
-                    <input type="date" class="end-day">
-                </div>
-                <button class="add-button"><i class="fa-solid fa-plus"></i></button>
-                <button class="cancel-button"><i class="fa-solid fa-xmark"></i></button>
-            </main>
+        <div class="additem-container additem-hidden ">
+            <div class="additem-section">
+                <main class="additem-header">
+                    <h1 class="additem-header-title">TODO 추가</h1>
+                    <input type="text" class="title-input" placeholder="제목을 입력해주세요">
+                </main>
+                <main class="additem-main-content">
+                    <input type="text" class="content-input" placeholder="내용을 입력해주세요">
+                </main>
+                <main class="additem-footer">
+                    <div class="write-box">
+                    </div>
+                    <div class="end-box">
+                        <h3 class="end-text" >마감날짜</h2>
+                        <input type="date" class="end-day" >
+                    </div>
+                    <button class="add-button"><i class="fa-solid fa-plus"></i></button>
+                    <button class="cancel-button"><i class="fa-solid fa-xmark"></i></button>
+                </main>
+                
+            </div>
         </div>
     </div>
-</div>
 
-    <script src="./js/additemtest.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/todo.js"></script>
+    <script src="./js/additem.js"></script>
 </body>
 </html>

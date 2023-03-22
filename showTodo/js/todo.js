@@ -10,6 +10,7 @@ class todoEvent {
         const addItemPlusButton = document.querySelectorAll('.menu-items');
         addItemPlusButton[2].onclick = () => {
             addItemService.getInstance().openAddItem();
+            
 
         }
     }
@@ -49,10 +50,11 @@ class todoService {
             todoContent: contentInput.value
         }
         this.todoList.push(todoObj);
-        localStorage.setItem("todoList", this.todoList);
+        localStorage.setItem("todoList",JSON.stringify(todoObj));
+
     }
 // 파란색 지우기 실패
-    // test(clickindex) {
+    // test() {
     //     const checkmenu = document.querySelectorAll(".check-current-menu");
     //     for(let i = 0 ;  i < checkmenu.length; i++) {
     //         if(i == clickindex) {

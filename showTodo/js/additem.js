@@ -10,13 +10,17 @@ class addItemEvent {
         const addItemPlusButton = document.querySelectorAll('.menu-items');
         addItemPlusButton[2].onclick = () => {
             addItemService.getInstance().openAddItem();
+            addItemService.getInstance().eraserAddItem();
         }
     }
     addEventAddClick() {
         const addItemPlusButton = document.querySelector(".add-button");
         addItemPlusButton.onclick = () => {
-            addItemService.getInstance().closeAddItem();
             todoService.getInstance().addTodo();
+            addItemService.getInstance().closeAddItem();
+            addItemService.getInstance().eraserAddItem();
+            
+
             
         }
     }    
@@ -46,5 +50,13 @@ class addItemService {
         const addItemContainer = document.querySelector(".additem-container");
         addItemContainer.classList.remove("additem-hidden");
         
+    }
+    eraserAddItem() {
+        const titleInput = document.querySelector(".title-input");
+        const contentInput = document.querySelector(".content-input");
+        const endday = document.querySelector(".end-day");
+        titleInput.value = "";
+        contentInput.value="";
+        endday.value= "";
     }
 }

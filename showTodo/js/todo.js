@@ -54,13 +54,17 @@ class todoService {
 
         // 이거 보내기
         const todoObj = {
-            writeTodoDate: `${nowDate.getFullYear()}.${nowDate.getMonth() + 1}.${nowDate.getDate()}`,
-            endTodoDate: endDate.value,
-            todoTitle : titleInput.value,
-            todoContent: contentInput.value
+            todoTitle: titleInput.value,
+            todoContent:contentInput.value,
+            todoDate:endDate.value
         }
+        
         boardService.getInstance().todoArray[0].push(todoObj);
         localStorage.setItem("todoList",JSON.stringify(todoObj));
+
+        boardService.getInstance().updateLocalStorage();
+        boardEvent.getInstance().addEventDeleteTodoClick();
+        boardEvent.getInstance().addEventDragItem();
 
     }
     setaddItem() {

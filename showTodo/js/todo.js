@@ -23,8 +23,7 @@ class todoEvent {
     addEventAddTodoClick() {
         const addItemPlusButton = document.querySelectorAll('.menu-items');
         addItemPlusButton[2].onclick = () => {
-            todoService.getInstance().addCheckCurrentMenuHidden(0);
-            todoService.getInstance().addCheckCurrentMenuHidden(1);
+
             addItemService.getInstance().setDate();
             addItemService.getInstance().openAddItem();
 

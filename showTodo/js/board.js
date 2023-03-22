@@ -11,31 +11,62 @@ class boardEvent {
         const $ = (select) => document.querySelectorAll(select);
         const boardItems = $('.board-items');
         const boardLists = $('.board-list');
-        
-        boardItems.forEach(boardItem => {
-            boardItem.addEventListener("dragstart", () => {
-                boardItem.classList.add("dragflag");
-            })
 
-            boardItem.addEventListener("dragend", () => {
+        const pastBoard = null;
+
+        const todoArray = boardService.getInstance().todoArray;
+        boardItems.forEach(boardItem => {
+            boardItem.ondragstart = () => {
+                boardItem.classList.add("dragflag");
+                this.pastBoard = boardItem.parentElement;
+            }
+
+            boardItem.ondragend = () => {
                 boardItem.classList.remove("dragflag");
-            })
+            }
         })
 
 
         boardLists.forEach(boardList => {
-            boardList.addEventListener("dragover", e => {
+            boardList.ondragover = e => {
                 e.preventDefault();
-            })
+            }
 
-            boardList.addEventListener("drop", e => {
+            const removeListIndex = null;
+            const removeIndex = null;
+            const addListIndex = null;
+
+            boardList.ondrop = e => {
                 const dragItem = document.querySelector(".dragflag");
                 if(dragItem.parentElement != boardList) {
-                    boardList.appendChild(dragItem);
+                    const pastBoardItems = this.pastBoard.querySelectorAll(".board-items")
+                    
+                    boardLists.forEach((List, index) => {
+                        if(this.pastBoard == List) {
+                            this.removeListIndex = index; 
+                        }
+                    })
 
-                    console.log(boardList)
+                    boardList.appendChild(dragItem)
+
+                    boardLists.forEach((List, index) => {
+                        if(dragItem.parentElement == List) {
+                            this.addListIndex = index;
+                        }
+                    })
+
+                    pastBoardItems.forEach((item, index) => {
+                        if(dragItem == item) {
+                            this.removeIndex = index;
+                        }
+                    })
+
+                    todoArray[this.addListIndex].push(todoArray[this.removeListIndex][this.removeIndex]);
+                    todoArray[this.removeListIndex].splice(this.removeIndex, 1);
+                    boardService.getInstance().updateLocalStorage();
+                    boardService.getInstance().loadtodoListAll();
                 }
-            })
+            }
         })
     }
 
@@ -47,6 +78,34 @@ class boardEvent {
                 
             }
         });
+    }
+
+    addEventDeleteTodoClick() {
+        const deleteButtons = document.querySelectorAll(".delete-button")
+        const boardLists = document.querySelectorAll(".board-list");
+        const removeListIndex = null;
+        const removeIndex = null;
+
+        deleteButtons.forEach(deleteButton => {
+            deleteButton.onclick = () => {
+                boardLists.forEach((boardList, index) => {
+                    if(deleteButton.parentElement.parentElement == boardList) {
+                        this.removeListIndex = index;
+                    }
+                });
+
+                removeList.forEach((item, index) => {
+                    if(deleteButton.parentElement == item) {
+                        this.removeIndex = index;
+                    }
+                })
+
+                
+                
+                boardService.getInstance().todoArray[removeListIndex].splice(removeIndex, 1);
+            }
+        });
+
     }
 }
 
@@ -61,25 +120,52 @@ class boardService {
         return this.#instance;
     }
 
-    todoList = null;
+    todoArray = null;
 
     constructor() {
         if(localStorage.getItem("todoList") == null) {
-            this.todoList = {};
+            this.todoArray = [[],[],[],[]]
         } else {
-            this.todoList = JSON.parse(localStorage.getItem("todoList"));
+            this.todoArray = JSON.parse(localStorage.getItem("todoList"));
         }
     }
 
     updateLocalStorage() {
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
-        // this.loadtodoList();
+        localStorage.setItem("todoList", JSON.stringify(this.todoArray));
+        this.loadtodoListAll();
     }
 
-    loadtodoList() {
+    loadtodoListAll() {
         const boardLists = document.querySelectorAll(".board-list");
 
-        boardLists.forEach()
+        boardLists.forEach((boardList, index) => {
+            boardList.innerHTML = ``;
+            this.loadtodoList(boardList, index);
+        });
+        boardEvent.getInstance().addEventDragItem();
+        boardEvent.getInstance().addEventDeleteTodoClick();
+    }
+
+    loadtodoList(boardList, index) {
+        boardList.innerHTML = ``;
+        const todoList = this.todoArray[index];
+
+        todoList.forEach(todoObj => {
+            boardList.innerHTML += `
+                <li class="board-items" draggable="true">
+                    <button class="delete-button"><i class="fa-solid fa-trash"></i></button>
+                    <div class="content-header">
+                        <h1 class="content-title">${todoObj.todoTitle}</h1>
+                    </div>
+                    <div class="content-main">
+                        ${todoObj.todoContent}
+                    </div>
+                    <div class="content-footer">
+                        <div class="content-date">${todoObj.todoDate}</div>
+                    </div>
+                </li>
+            `;
+        });
     }
 
     showItemModal(index) {

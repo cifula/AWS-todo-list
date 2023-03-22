@@ -12,20 +12,30 @@ class testClass {
         const boardLists = document.querySelectorAll(".board-list");
         
         menuItems[2].onclick = () => {
+            const todoObj = {
+                todoTitle: "TITLE",
+                todoContent:"main content1",
+                todoDate:"2023-03-20"
+            }
+
             boardLists[0].innerHTML += `
             <li class="board-items" draggable="true">
             <button class="delete-button"><i class="fa-solid fa-trash"></i></button>
             <div class="content-header">
-                <h1 class="content-title">TITLE</h1>
+                <h1 class="content-title">${todoObj.todoTitle}</h1>
                 </div>
                 <div class="content-main">
-                main content
+                ${todoObj.todoContent}
                 </div>
                 <div class="content-footer">
-                <div class="content-date">2023-03-20</div>
+                <div class="content-date">${todoObj.todoDate}</div>
                 </div>
                 </li>
             `
+
+            boardService.getInstance().todoArray[0].push(todoObj);
+            boardService.getInstance().updateLocalStorage();
+            boardEvent.getInstance().addEventDeleteTodoClick();
             boardEvent.getInstance().addEventDragItem();
         }
     }
